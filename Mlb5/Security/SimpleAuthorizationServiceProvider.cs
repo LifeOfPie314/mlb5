@@ -23,7 +23,7 @@ namespace Mlb5.Security
 
             User user;
 
-            using (var db = new PrototypeContext())
+            using (var db = new Mlb5Context())
             {
                 // if user not found then add user
                 user = await db.Users.SingleOrDefaultAsync(x => x.Username == context.UserName);

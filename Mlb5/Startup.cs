@@ -33,7 +33,7 @@ namespace Mlb5
             app.UseWebApi(config);
 
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<PrototypeContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Mlb5Context, Configuration>());
         }
 
         public void ConfigureOAuth(IAppBuilder app)

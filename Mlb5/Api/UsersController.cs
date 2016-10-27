@@ -11,9 +11,9 @@ namespace Mlb5.Api
 {
     public class UsersController : ApiController
     {
-        private readonly PrototypeContext _db;
+        private readonly Mlb5Context _db;
 
-        public UsersController(PrototypeContext dbContext)
+        public UsersController(Mlb5Context dbContext)
         {
             _db = dbContext;
         }
