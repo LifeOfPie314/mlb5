@@ -1,0 +1,19 @@
+﻿<h2>Page 1</h2>
+<p>{{vm.setting1}}</p>
+<h5>user claims</h5>
+<table>
+    <thead>
+    <tr>
+        <th>Subject</th>
+        <th>Type</th>
+        <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="claim in vm.sampleData">
+        <td>{{claim.subject}}</td>
+        <td>{{claim.type}}</td>
+        <td>{{claim.value}}</td>
+    </tr>
+    </tbody>
+</table>

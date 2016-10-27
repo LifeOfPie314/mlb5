@@ -1,0 +1,35 @@
+﻿<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Angular Base Apps Starter</title>
+    <link href="build/app.css" rel="stylesheet" type="text/css">
+    <script src="build/vendor-scripts.js"></script>
+    <script src="build/app.js"></script>
+    <script src="build/templates.js"></script>
+</head>
+<body>
+    <ui-view></ui-view>
+    
+    <script type="text/javascript">
+        (function () {
+            'use strict';
+
+            angular
+                .module('app')
+                .constant('appConfig', {
+                    setting1: 'mySetting'
+                });
+        })();
+
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function () {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+</body>
+</html>
