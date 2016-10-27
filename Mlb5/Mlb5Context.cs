@@ -3,7 +3,7 @@ using Mlb5.Models;
 
 namespace Mlb5
 {
-    public class PrototypeContext : DbContext
+    public class Mlb5Context : DbContext
     {
         public DbSet<User> Users { get; set; }
     }

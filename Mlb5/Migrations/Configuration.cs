@@ -2,14 +2,14 @@
 
 namespace Mlb5.Migrations
 {
-    public sealed class Configuration : DbMigrationsConfiguration<PrototypeContext>
+    public sealed class Configuration : DbMigrationsConfiguration<Mlb5Context>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(PrototypeContext context)
+        protected override void Seed(Mlb5Context context)
         {
             //  This method will be called after migrating to the latest version.
 

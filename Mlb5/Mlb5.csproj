@@ -211,7 +211,7 @@
       <DependentUpon>201610222013303_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="PrototypeContext.cs" />
+    <Compile Include="Mlb5Context.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\SimpleAuthorizationServiceProvider.cs" />
@@ -228,6 +228,7 @@
     <Content Include="client\sass\main.scss" />
     <Content Include="client\build\**\*" />
     <Content Include="Views\Home\Viewer.cshtml" />
+    <None Include="Properties\PublishProfiles\Mlb5 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

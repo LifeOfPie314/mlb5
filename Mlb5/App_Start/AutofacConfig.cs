@@ -24,7 +24,7 @@ namespace Mlb5.App_Start
             builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
 
             // DB
-            builder.RegisterType<PrototypeContext>().AsSelf();
+            builder.RegisterType<Mlb5Context>().AsSelf();
 
             // MediatR
             //builder.RegisterSource(new ContravariantRegistrationSource());
