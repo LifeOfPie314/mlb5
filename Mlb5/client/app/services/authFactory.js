@@ -5,13 +5,13 @@
         .module('app')
         .factory('authFactory', authFactory);
 
-    function authFactory($http, $q, localStorageService) {
+    function authFactory($http, $q, localStorageService, appConfig) {
         var authentication = {
             isAuth: false,
             username: ""
         };
 
-        var serviceBase = '/';
+        var serviceBase = appConfig.serviceBase;
         
         var service = {
             login: login,
