@@ -30,6 +30,21 @@
                 url: '/page2',
                 component: 'page2'
             })
+            .state('home.page3',
+            {
+                url: '/page3',
+                component: 'page3'
+            })
+            .state('home.page4',
+            {
+                url: '/page4',
+                component: 'page4'
+            })
+            .state('home.page5',
+            {
+                url: '/page5',
+                component: 'page5'
+            })
             .state('login',
             {
                 url: '/login',

@@ -1,19 +1,19 @@
-﻿(function() {
+(function() {
     'use strict';
 
     angular
         .module('app')
-        .component('page1',
+        .component('page5',
         {
-            templateUrl: 'page1.html',
-            controller: page1,
+            templateUrl: 'page5.html',
+            controller: page5,
             controllerAs: 'vm'
         });
 
-    function page1(appConfig, $http) {
+    function page5(appConfig, $http) {
         /* jshint validthis:true */
         var vm = this;
-        vm.title = 'page1';
+        vm.title = 'page5';
 
         vm.$onInit = function() {
             console.log(vm.title);
