@@ -23,11 +23,6 @@
         vm.awayIsActive = awayIsActive;
         vm.homeIsActive = homeIsActive;
         vm.dateSelected = dateSelected;
-        vm.datePickerOptions = {
-        
-        };
-
-        
 
         vm.$onInit = function() {
             console.log(vm.title);
@@ -43,9 +38,11 @@
         }
 
         function dateSelected() {
-            //var date = moment
+            var selecteDateString = String(vm.selectedDate).split(' ');
+            var datestring = selecteDateString[1] + ' ' + selecteDateString[2] + ', ' + selecteDateString[3];
 
-            loadPicks(vm.selectedDate);
+            var newDate = moment(datestring, "MMM DD, YYYY");
+            loadPicks(newDate);
         }
 
         function loadPicks(date) {

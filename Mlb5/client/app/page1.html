@@ -1,5 +1,5 @@
 ﻿<div class="grid-block wrap" style="background: #404040; margin: 20px;">
-    <input type="text" class="selectdate" ng-model="vm.selectedDate" name="date" ng-change="vm.dateSelected()" bs-datepicker>
+    <input type="text" class="selectdate" ng-model="vm.selectedDate" name="date" data-date-format="EEE, MMMM d, yyyy" ng-change="vm.dateSelected()" bs-datepicker>
 </div>
 
 <div class="grid-block wrap" style="background: #404040; margin: 20px;" ng-repeat="game in vm.games">
