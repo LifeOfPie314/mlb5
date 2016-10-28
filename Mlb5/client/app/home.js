@@ -15,9 +15,22 @@
         var vm = this;
         vm.title = 'home layout';
 
+        vm.sampleData = [];
+
+        vm.sampleData.today = 48;
+        vm.sampleData.hits = 18;
+        vm.sampleData.knockouts = 39;
+        vm.sampleData.tokens = 12;
+
         vm.$onInit = function() {
             console.log(vm.title);
             $state.go('home.page1');
+
+            // $http.get('/api/sample')
+            //     .then(function(response) {
+            //     vm.sampleData = response.data;
+            // });
         }
+
     }
 })();
