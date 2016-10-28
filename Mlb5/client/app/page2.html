@@ -1,22 +1,52 @@
-﻿<div style="text-align: center;">
-    <ul class="button-group segmented" style="background:white; border: white;">
+﻿<div class="grid-block wrap" style="text-align: center;">
+    <ul class="button-group segmented" style="border: #2b2b2b; padding-left: 30px;">
       <li>
-        <input type="radio" name="activity" value="fork" id="activity">
-        <label for="activity" style="color:#2b2b2b; border: white;">Activity</label>
+        <label style="background: #2b2b2b; color:white; border: white; border: 1px solid; border-right: 0px; border-radius: 25px 0 0 25px; padding-left: 90px;" ng-click="toggle = 'trophy'">Trophies</label>
       </li>
       <li>
-        <input type="radio" name="leaders" value="spork" id="leaders">
-        <label for="leaders" style="background: #494949; color:white; border: white 2px;">Leaders</label>
-      </li>
-      <li>
-        <input type="radio" name="leagues" value="spoon" id="=leagues">
-        <label for="leagues" style="background: #494949; color:white; border: white 2px;">Leagues</label>
+        <label style="background: #2b2b2b; color:white; border: white; border: 1px solid; border-radius: 0 25px 25px 0; padding-right: 90px;" ng-click="toggle = 'card'">Cards</label>
       </li>
     </ul>
 </div>
 
 
-<div style="background: #2b2b2b; height: 100%; width: 100%;" ng-show="toggle-cards">
+<div style="background: #2b2b2b; height: 100%; width: 100%;" ng-show="toggle=='card'">
+    <p style="color: white; text-align: center; font-size: 12px;"><strong>4</strong> <i>of</i> <strong>15</strong> COLLECTED</p>
+    <div class="grid-block wrap" style="margin: 20px;">
+        <div class="small-4" style="padding: 5px;">
+            <img src="images/active-cards/mets_card_ACTIVE.jpg">
+        </div>
+        <div class="small-4" style="padding: 5px;" >
+            <img src="images/inactive-cards/brewers_card_inactive.jpg">
+        </div>
+        <div class="small-4" style="padding: 5px;">
+            <img src="images/inactive-cards/cardinals_card_inactive.jpg">
+        </div>
+        <div class="small-4" style="padding: 5px;" >
+            <img src="images/inactive-cards/marlins_card_inactive.jpg">
+        </div>
+        <div class="small-4" style="padding: 5px;">
+            <img src="images/active-cards/cubs_card_ACTIVE.jpg">
+        </div>
+        <div class="small-4" style="padding: 5px;" >
+            <img src="images/active-cards/reds_card_ACTIVE.jpg">
+        </div>
+        <div class="small-4" style="padding: 5px;">
+            <img src="images/inactive-cards/braves_card_inactive.jpg">
+        </div>
+        <div class="small-4" style="padding: 5px;" >
+            <img src="images/inactive-cards/nationals_card_inactive.jpg">
+        </div>
+        <div class="small-4" style="padding: 5px;">
+            <img src="images/inactive-cards/pirates_card_inactive.jpg">
+        </div>
+        <div class="small-4" style="padding: 5px;" >
+            <img src="images/inactive-cards/phillies_card_inactive.jpg">
+        </div>
+    </div>
+</div>
+
+<div style="background: #2b2b2b; height: 100%; width: 100%;" ng-show="toggle=='trophy'">
     <p style="color: white; text-align: center; font-size: 12px;"><strong>4</strong> <i>of</i> <strong>15</strong> COLLECTED</p>
     <div class="grid-block wrap" style="margin: 20px;">
         <div class="small-6" style="padding: 5px;">
@@ -74,5 +104,6 @@
             <img src="images/trophies/inactive/TROPHY_no_hitter_inactive.jpg">
         </div>
     </div>
+</div>
 
 </div>
