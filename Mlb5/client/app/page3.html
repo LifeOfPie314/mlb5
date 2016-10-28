@@ -42,32 +42,24 @@
         </div>
         
     </div>
-    <div ng-switch="game.status">
-        <div ng-switch-when="0">
-            <div ba-open="player-info" class="small-3 grid-content" style="padding-left: 0px !important; margin: auto;  color:white; text-align: center; height: 70px;"><p style="font-size: 12px; padding-top: 25px; padding-left: 8px;">{{game.startTime | date:'h:mma'}} CT</p></div>
-        </div>
-        <div ng-switch-when="1">
-            <div ba-open="player-info" class="small-3 grid-content">
+            <div ba-open="player-info" ng-show="game.status == 0" class="small-3 grid-content" style="padding-left: 0px !important; margin: auto;  color:white; text-align: center; height: 70px;" ><p style="font-size: 12px; padding-top: 25px; padding-left: 8px;">{{game.startTime | date:'h:mma'}} CT</p></div>
+            <div ba-open="player-info" ng-show="game.status == 1" class="small-3 grid-content">
                 <span style="color:white; position: absolute; right:25px; top: 4px; font-size: 12px;">In Prog</span>
                 <br>
                 <img src="images/in_game_icons.png">
                 <span style="color:white; position: absolute; right:58px; top: 50px; font-size: 12px;">2</span>
                 <span style="color:white; position: absolute; right:23px; top: 50px; font-size: 12px;">8</span>
             </div>
-        </div>
-        <div ng-switch-default>
-            <div ba-open="player-info" class="small-3 grid-content">
+            <div ba-open="player-info" ng-show="game.status == 2" class="small-3 grid-content">
                 <span style="color:white; position: absolute; right:25px; top: 4px; font-size: 12px;">Final</span>
                 <br>
                 <img src="images/in_game_icons.png">
                 <span style="color:white; position: absolute; right:58px; top: 50px; font-size: 12px;">2</span>
                 <span style="color:white; position: absolute; right:23px; top: 50px; font-size: 12px;">8</span>
             </div>
-        </div>
-    </div>
 </div>
 
-<div class="grid-block wrap" style="background: #404040; margin: 20px;">
+<!--<div class="grid-block wrap" style="background: #404040; margin: 20px;">
     <div class="small-9" style="padding-right: 0px !important; background: #202020;" ng-click="nyn=1">
         <div class="small-12 grid-content" style="padding-right: 35px;">
             <div class="grid-block">
@@ -97,7 +89,7 @@
         </div>
         
     </div>
-    <!-- add ng-show/hi -->
+    <!-- add ng-show/hi 
     <div ba-open="player-info" class="small-3 grid-content" style="padding-left: 0px !important; margin: auto;  color:white; text-align: center; height: 70px;"><p style="font-size: 12px; padding-top: 25px; padding-left: 8px;">3:05PM CT</p>
     </div>
 </div>
@@ -133,7 +125,6 @@
         </div>
         
     </div>
-    <!-- <div ba-open="player-info" class="small-3 grid-content" style="padding-left: 0px !important; margin: auto;  color:white; text-align: center; height: 70px;"><p style="font-size: 12px; padding-top: 25px; padding-left: 8px;">3:05PM CT</p></div> -->
 
     <div ba-open="player-info" class="small-3 grid-content"> 
         <span style="color:white; position: absolute; right:25px; top: 4px; font-size: 12px;">Today</span>
@@ -142,7 +133,7 @@
         <span style="color:white; position: absolute; right:58px; top: 50px; font-size: 12px;">2</span>
         <span style="color:white; position: absolute; right:23px; top: 50px; font-size: 12px;">8</span>
     </div>
-</div>
+</div>-->
 
 <div ba-modal="" id="player-info" class="tiny" style="">
   <a ba-close="" class="close-button" style="color:white;">×</a>
