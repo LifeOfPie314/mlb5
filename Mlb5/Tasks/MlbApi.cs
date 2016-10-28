@@ -60,7 +60,7 @@ namespace Mlb5.Tasks
 
         public static string GetBaseApiUrl(DateTime date)
         {
-            var apiurl = string.Format("http://gd.mlb.com/components/game/mlb/year_{0:yyyy}/month_{0:MM}/day_{0:dd}/",
+            var apiurl = String.Format("http://gd.mlb.com/components/game/mlb/year_{0:yyyy}/month_{0:MM}/day_{0:dd}/",
                 date);
             return apiurl;
         }
@@ -93,13 +93,27 @@ namespace Mlb5.Tasks
         }
 
 
+        public static async Task<int> ImportGamesIfNeeded(Mlb5Context db, DateTime date)
+        {
+            if (!db.Games.Any(x => x.Date == date))
+            {
+                var mlbApi = new MlbApi();
+
+                var games = await mlbApi.GetGameFiles(date);
+
+                db.Games.AddRange(games);
+
+                return await db.SaveChangesAsync();
+            }
+            return 0;
+        }
     }
 
     public class MasterScoreboardApiGame
     {
         private string _boxScoreXml;
         public string id { get; set; }
-        public string game_pk { get; set; }
+        public int game_pk { get; set; }
         public string time_hm_lg { get; set; }
         public string time_zone_hm_lg { get; set; }
         public string hm_lg_ampm { get; set; }
@@ -142,7 +156,8 @@ namespace Mlb5.Tasks
         {
             var game = new Game();
 
-            game.Id = id;
+            game.Id = game_pk;
+            game.StringId = id;
             game.Date = date;
             game.AwayTeam.TeamId = away_team_id;
             game.AwayTeam.Code = away_code;

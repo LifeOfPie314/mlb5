@@ -14,7 +14,8 @@ namespace Mlb5.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string StringId { get; set; }
         public DateTime Date { get; set; }
         public DateTime StartTime { get; set; }
         public TimeSpan ElapsedTime

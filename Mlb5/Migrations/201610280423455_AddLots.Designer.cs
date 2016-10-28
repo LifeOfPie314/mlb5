@@ -7,13 +7,13 @@ namespace Mlb5.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddElapsedTimeFields : IMigrationMetadata
+    public sealed partial class AddLots : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddElapsedTimeFields));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddLots));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610280227449_AddElapsedTimeFields"; }
+            get { return "201610280423455_AddLots"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,0 +1,34 @@
+﻿@model Mlb5.Models.SimulationDateTime
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin</title>
+</head>
+<body>
+<div>
+    <fieldset>
+        <legend>Set Simulation Date and Time</legend>
+        <form method="get" action="/loaddata">
+            <p>
+                <label>date</label>
+                <input type="date" name="date" />
+            </p>
+            <p>
+                <label>hours</label>
+                <input type="number" name="hours" min="1" max="23" value="@(model.Date)" />
+            </p>
+            <p>
+                <label>minutes</label>
+                <input type="number" name="minutes" min="1" max="23" />
+            </p>
+            <p>
+                <input type="submit" value="Submit" />
+            </p>
+        </form>
+    </fieldset>
+</div>
+</body>
+</html>
