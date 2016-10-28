@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Mlb5.Models;
 using Mlb5.Tasks;
 using Mlb5.ViewModels;
 
@@ -66,23 +67,54 @@ namespace Mlb5.Api
 
                 while (date < lastDate)
                 {
-                    if (!db.Games.Any(x => x.Date == date))
-                    {
-                        var mlbApi = new MlbApi();
-
-                        var games = await mlbApi.GetGameFiles(date);
-
-                        db.Games.AddRange(games);
-
-                        var result = await db.SaveChangesAsync();
+                    var result =await MlbApi.ImportGamesIfNeeded(db, date);
                         recordCount = recordCount + result;
-                    }
 
                     date = date.AddDays(1);
                 }
             }
 
             return Ok(recordCount);
+
+
+        }
+
+        [HttpGet]
+        [Route("datetime")]
+        public HttpResponseMessage Datetime()
+        {
+            using (var db = new Mlb5Context())
+            {
+                SimulationDateTime simDateTime = db.SimulationDateTimes.SingleOrDefault();
+                if (simDateTime == null)
+                {
+                    simDateTime = new SimulationDateTime() {Date = new DateTime(2016,9,23)};
+                    db.SimulationDateTimes.Add(simDateTime);
+                }
+
+                var response = RazorView.GetResponseWithModel("datetime", "~/Views/Home/Datetime.cshtml", simDateTime);
+                return response;
+
+            }
+
+        }
+
+        [HttpGet]
+        [Route("setdatetime")]
+        public async Task<IHttpActionResult> SetDatetime(DateTime date, int hours, int minutes)
+        {
+            SimulationDateTime simDateTime = new SimulationDateTime();
+            using (var db = new Mlb5Context())
+            {
+                simDateTime = db.SimulationDateTimes.SingleOrDefault();
+                simDateTime.Date = date;
+                simDateTime.Hours = hours;
+                simDateTime.Minutes = minutes;
+
+                await db.SaveChangesAsync();
+            }
+
+            return Ok(simDateTime);
 
 
         }
