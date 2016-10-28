@@ -50,7 +50,7 @@
         function loadPicks(date) {
             $http.get('api/picks/' + date.year() + '/' + date.format('MM') + '/' + date.format('DD'))
                 .then(function(response) {
-                    vm.games = response.data;
+                    vm.games = response.data.picks;
                 });
         }
 

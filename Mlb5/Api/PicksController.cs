@@ -31,24 +31,57 @@ namespace Mlb5.Api
                 await MlbApi.ImportGamesIfNeeded(db, date);
                 games = db.Games.Where(x => x.Date == date).ToList();
                 picks = db.Picks.Where(x => x.Game.Date == date).ToList();
-            }
 
-            var currentTime = dateTime.GetCurrentTime();
+                var currentTime = dateTime.GetCurrentTime();
 
-            var gamePicks = new List<GamePick>();
-            foreach (var game in games)
-            {
-                var gamePick = Mapper.Map<GamePick>(game);
-                gamePick.SetStatus(currentTime);
-
-                var pick = picks.SingleOrDefault(x => x.Game.Id == gamePick.Id);
-                if (pick != null)
+                var gamePicks = new List<GamePick>();
+                foreach (var game in games)
                 {
-                    gamePick.MarkPicked(pick);
+                    var gamePick = Mapper.Map<GamePick>(game);
+                    gamePick.SetStatus(currentTime);
+
+                    var pick = picks.SingleOrDefault(x => x.Game.Id == gamePick.Id);
+                    if (pick != null)
+                    {
+                        gamePick.MarkPicked(pick);
+                    }
+                    gamePicks.Add(gamePick);
                 }
-                gamePicks.Add(gamePick);
+
+
+                // Get other picks where games are on a previous date and picks have not been awarded
+
+                // Get updated Counts
+
+                var viewModel = new PicksViewModel()
+                {
+                    Picks = gamePicks,
+                    Counts = GetUpdatedCounts(db)
+                };
+
+
+
+                return Ok(viewModel);
             }
-            return Ok(gamePicks);
+        }
+
+        private Counts GetUpdatedCounts(Mlb5Context db)
+        {
+            return new Counts();
+        }
+
+        public class PicksViewModel
+        {
+            public List<GamePick> Picks { get; set; }
+            public Counts Counts { get; set; }
+        }
+
+        public class Counts
+        {
+            public int Runs { get; set; }
+            public int Homeruns { get; set; }
+            public int Strikeouts { get; set; }
+            public int Coins { get; set; }
         }
 
         [Route("{year}/{month}/{day}/xml")]

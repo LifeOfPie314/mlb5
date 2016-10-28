@@ -33,7 +33,17 @@ namespace Mlb5.Models
         public int PickId { get; set; }
         public GameStatus Status { get; set; }
 
-        public void MarkPicked(Pick pick)
+        public GamePickTeam GetPickedTeam()
+        {
+            if (AwayTeam.Picked)
+                return AwayTeam;
+            else
+            {
+                return HomeTeam;
+            }
+        }
+
+        public bool MarkPicked(Pick pick)
         {
             Picked = true;
             PickId = pick.Id;
@@ -45,8 +55,31 @@ namespace Mlb5.Models
             {
                 HomeTeam.MarkPicked();
             }
+
+            if (Status == GameStatus.Completed && pick.Status == PickStatus.New)
+            {
+                // if pick won then mark run and calculate runs
+                if (AwayTeam.Runs > HomeTeam.Runs && AwayTeam.Picked)
+                {
+                    pick.Status = PickStatus.Won;
+                    pick.Runs = AwayTeam.Runs - HomeTeam.Runs;
+                }
+                else if (HomeTeam.Runs > AwayTeam.Runs && HomeTeam.Picked)
+                {
+                    pick.Status = PickStatus.Won;
+                    pick.Runs = HomeTeam.Runs - AwayTeam.Runs;
+                }
+                // add homers and strikeouts
+                var myPick = GetPickedTeam();
+                pick.Homeruns = myPick.Homeruns;
+                pick.Strikeouts = myPick.Strikeouts; 
+
+                return true;
+            }
+            return false;
         }
 
+        
         public void SetStatus(DateTime currentDateTime)
         {
             if (StartTime < currentDateTime)

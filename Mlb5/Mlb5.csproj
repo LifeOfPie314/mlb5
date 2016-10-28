@@ -216,10 +216,8 @@
     <Content Include="client\app\logout.js" />
     <Content Include="client\app\login.html" />
     <Content Include="client\app\login.js" />
-    <Content Include="client\app\page1.html" />
     <Content Include="client\app\page2.html" />
     <Content Include="client\app\page2.js" />
-    <Content Include="client\app\page1.js" />
     <Content Include="client\app\home.html" />
     <Content Include="client\app\home.js" />
     <Content Include="client\app\page3.html" />
@@ -254,6 +252,10 @@
     <Compile Include="Migrations\201610280423455_AddLots.Designer.cs">
       <DependentUpon>201610280423455_AddLots.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610281243248_AddRuns.cs" />
+    <Compile Include="Migrations\201610281243248_AddRuns.Designer.cs">
+      <DependentUpon>201610281243248_AddRuns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mlb5Context.cs" />
     <Compile Include="Models\Game.cs" />
@@ -276,6 +278,7 @@
     <Content Include="client\package.json" />
     <Content Include="client\sass\main.scss" />
     <Content Include="client\build\**\*" />
+    <Content Include="images\**\*" />
     <Content Include="Views\Home\Viewer.cshtml" />
     <Content Include="Api\master_scoreboard.json" />
     <Content Include="Api\boxscore.json" />
@@ -300,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610280423455_AddLots.resx">
       <DependentUpon>201610280423455_AddLots.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610281243248_AddRuns.resx">
+      <DependentUpon>201610281243248_AddRuns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

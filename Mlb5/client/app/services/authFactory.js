@@ -29,7 +29,7 @@
 
             var deferred = $q.defer();
 
-            $http.post(serviceBase + 'token',
+            $http.post(serviceBase + 'oauth/token',
                     data,
                     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                 .success(function (response) {

@@ -11,6 +11,7 @@ namespace Mlb5.Models
         public int UserId { get; set; }
         public Game Game { get; set; }
         public string TeamCode { get; set; }
+        public int Runs { get; set; }
         public int Homeruns { get; set; }
         public int Strikeouts { get; set; }
         public PickStatus Status { get; set; }
