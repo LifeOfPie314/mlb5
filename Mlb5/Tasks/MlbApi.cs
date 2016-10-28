@@ -191,11 +191,11 @@ namespace Mlb5.Tasks
             if (hm_lg_ampm == "PM")
                 hours = hours + 12;
 
-            hours = hours + Convert.ToInt32(time_zone_hm_lg);
+            hours--; // Switch to Central Time
+            //= hours + Convert.ToInt32(time_zone_hm_lg);
 
 
-            game.StartTime = DateTime.SpecifyKind(new DateTime(date.Year, date.Month, date.Day, hours, minutes, 0),
-                DateTimeKind.Utc);
+            game.StartTime = new DateTime(date.Year, date.Month, date.Day, hours, minutes, 0);
 
             // Parse XML
             if (!String.IsNullOrEmpty(_boxScoreXml))
@@ -206,18 +206,19 @@ namespace Mlb5.Tasks
 
                 var elapsedTime = boxscoreNode.Attribute("elapsed_time").Value.Substring(0, 4);
                 game.ElapsedTimeString = elapsedTime;
-                game.ElapsedTimeHours = Convert.ToInt32(elapsedTime[0]);
-                game.ElapsedTimeMinutes = Convert.ToInt32(elapsedTime[1]);
-                var elapsedTimeXml = elapsedTime.Split(':');
+                var elapsedTimeSplit = elapsedTime.Split(':');
+                game.ElapsedTimeHours = Convert.ToInt32(elapsedTimeSplit[0]);
+                game.ElapsedTimeMinutes = Convert.ToInt32(elapsedTimeSplit[1]);
                 try
                 {
+                    var EndTime = game.StartTime.AddHours(game.ElapsedTimeHours).AddMinutes(game.ElapsedTimeMinutes);
                     //game.ElapsedTime = new TimeSpan(0, Convert.ToInt32(elapsedTime[0]), Convert.ToInt32(elapsedTime[1]), 0);
-                    game.EndTime = game.StartTime.Add(game.ElapsedTime);
+                    game.EndTime = EndTime;
                 }
                 catch (Exception ex)
                 {
                     //game.ElapsedTime = new TimeSpan(0, 3, 0, 0);
-                    game.EndTime = game.StartTime.Add(game.ElapsedTime);
+                    game.EndTime = game.StartTime;
                 }
             }
             else
