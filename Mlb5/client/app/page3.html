@@ -17,8 +17,11 @@
                 <div class="small-6" style="padding-left: 20px; margin: auto; color:white; font-size: 16px">
                     {{game.awayTeam.name}}
                 </div>
-                <div class="small-3" style="text-align: right; margin: auto; color:white; font-size: 14px;">
+                <div class="small-3" ng-show="game.status==0" style="text-align: right; margin: auto; color:white; font-size: 14px;">
                     {{game.awayTeam.record}}
+                </div>
+                <div class="small-3" ng-show="game.status!=0" style="text-align: right; margin: auto; color:white; font-size: 18px;">
+                    {{game.awayTeam.runs}}
                 </div>
             </div>
         </div>
@@ -35,8 +38,11 @@
                 <div class="small-6" style="padding-left: 20px; margin: auto; color:white; font-size: 16px">
                     {{game.homeTeam.name}}
                 </div>
-                <div class="small-3" style="text-align: right; margin: auto; color:white; font-size: 14px;">
+                <div class="small-3" ng-show="game.status==0" style="text-align: right; margin: auto; color:white; font-size: 14px;">
                     {{game.homeTeam.record}}
+                </div>
+                <div class="small-3" ng-show="game.status!=0" style="text-align: right; margin: auto; color:white; font-size: 18px;">
+                    {{game.homeTeam.runs}}
                 </div>
             </div>
         </div>

@@ -232,6 +232,7 @@
     <Content Include="client\app\page5.js" />
     <Content Include="client\app\services\authFactory.js" />
     <Content Include="client\app\services\authIntercepterService.js" />
+    <Content Include="client\app\services\countData.js" />
     <Content Include="client\gulpfile.js" />
     <Content Include="client\images\login_backer.jpg" />
     <Content Include="client\index.html" />
@@ -332,6 +333,10 @@
     <Compile Include="Migrations\201610281243248_AddRuns.Designer.cs">
       <DependentUpon>201610281243248_AddRuns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610281411343_addCoins.cs" />
+    <Compile Include="Migrations\201610281411343_addCoins.Designer.cs">
+      <DependentUpon>201610281411343_addCoins.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mlb5Context.cs" />
     <Compile Include="Models\Game.cs" />
@@ -387,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610281243248_AddRuns.resx">
       <DependentUpon>201610281243248_AddRuns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610281411343_addCoins.resx">
+      <DependentUpon>201610281411343_addCoins.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

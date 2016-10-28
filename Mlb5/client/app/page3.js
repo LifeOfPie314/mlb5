@@ -10,7 +10,7 @@
             controllerAs: 'vm'
         });
 
-    function page3(appConfig, $http) {
+    function page3(appConfig, $http, countData) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'page3';
@@ -51,18 +51,25 @@
             $http.get('api/picks/' + date.year() + '/' + date.format('MM') + '/' + date.format('DD'))
                 .then(function(response) {
                     vm.games = response.data.picks;
+
+                    countData.updateCounts(response.data.counts);
+
+                    //countData.setCoins(response.data.counts.coins);
+                    //countData.setRuns(response.data.counts.runs);
+                    //countData.setHomeruns(response.data.counts.homeruns);
+                    //countData.setStrikeouts(response.data.counts.strikeouts);
                 });
         }
 
         function awayIsActive(game) {
-            if (game.status === 0 && !game.homeTeam.picked) {
+            if ((game.status === 0 && !game.homeTeam.picked) || game.awayTeam.picked) {
                 return true;
             }
             return false;
         }
 
         function homeIsActive(game) {
-            if (game.status === 0 && !game.awayTeam.picked) {
+            if ((game.status === 0 && !game.awayTeam.picked) || game.homeTeam.picked) {
                 return true;
             }
             return false;

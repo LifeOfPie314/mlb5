@@ -13,5 +13,6 @@ namespace Mlb5.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        public int Coins { get; set; }
     }
 }

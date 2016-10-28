@@ -43,7 +43,7 @@ namespace Mlb5.Models
             }
         }
 
-        public bool MarkPicked(Pick pick)
+        public bool MarkPicked(Pick pick, Mlb5Context db)
         {
             Picked = true;
             PickId = pick.Id;
@@ -58,21 +58,28 @@ namespace Mlb5.Models
 
             if (Status == GameStatus.Completed && pick.Status == PickStatus.New)
             {
+                var pickToUpdate = db.Picks.Single(x => x.Id == pick.Id);
                 // if pick won then mark run and calculate runs
                 if (AwayTeam.Runs > HomeTeam.Runs && AwayTeam.Picked)
                 {
-                    pick.Status = PickStatus.Won;
-                    pick.Runs = AwayTeam.Runs - HomeTeam.Runs;
+                    pickToUpdate.Status = PickStatus.Won;
+                    pickToUpdate.Runs = AwayTeam.Runs - HomeTeam.Runs;
                 }
                 else if (HomeTeam.Runs > AwayTeam.Runs && HomeTeam.Picked)
                 {
-                    pick.Status = PickStatus.Won;
-                    pick.Runs = HomeTeam.Runs - AwayTeam.Runs;
+                    pickToUpdate.Status = PickStatus.Won;
+                    pickToUpdate.Runs = HomeTeam.Runs - AwayTeam.Runs;
+                }
+                else
+                {
+                    pickToUpdate.Status = PickStatus.Lost;
                 }
                 // add homers and strikeouts
                 var myPick = GetPickedTeam();
-                pick.Homeruns = myPick.Homeruns;
-                pick.Strikeouts = myPick.Strikeouts; 
+                pickToUpdate.Homeruns = myPick.Homeruns;
+                pickToUpdate.Strikeouts = myPick.Strikeouts;
+
+                db.SaveChanges();
 
                 return true;
             }

@@ -21,6 +21,11 @@ namespace Mlb5.Api
         {
             var date = new DateTime(year, month, day);
 
+            var identity = User.Identity as ClaimsIdentity;
+
+            var userId = Convert.ToInt32(identity.Claims.First(c => c.Type == "userId").Value);
+
+
             var games = new List<Game>();
             var picks = new List<Pick>();
             SimulationDateTime dateTime;
@@ -43,7 +48,8 @@ namespace Mlb5.Api
                     var pick = picks.SingleOrDefault(x => x.Game.Id == gamePick.Id);
                     if (pick != null)
                     {
-                        gamePick.MarkPicked(pick);
+                        gamePick.MarkPicked(pick, db);
+
                     }
                     gamePicks.Add(gamePick);
                 }
@@ -56,7 +62,7 @@ namespace Mlb5.Api
                 var viewModel = new PicksViewModel()
                 {
                     Picks = gamePicks,
-                    Counts = GetUpdatedCounts(db)
+                    Counts = GetUpdatedCounts(userId, db)
                 };
 
 
@@ -65,9 +71,21 @@ namespace Mlb5.Api
             }
         }
 
-        private Counts GetUpdatedCounts(Mlb5Context db)
+        private Counts GetUpdatedCounts(int userId, Mlb5Context db)
         {
-            return new Counts();
+            var user = db.Users.Single(x => x.Id == userId);
+            var runs = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Sum(x => x.Runs);
+            var homeruns = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Sum(x => x.Homeruns);
+            var strikeouts = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Sum(x => x.Strikeouts);
+
+
+            return new Counts()
+            {
+                Runs = runs,
+                Homeruns = homeruns,
+                Strikeouts = strikeouts,
+                Coins = user.Coins
+            };
         }
 
         public class PicksViewModel

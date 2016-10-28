@@ -10,17 +10,19 @@
             controllerAs: 'vm'
         });
 
-    function home(appConfig, $state) {
+    function home(appConfig, $state, countData) {
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'home layout';
 
         vm.sampleData = [];
 
-        vm.sampleData.today = 48;
-        vm.sampleData.hits = 18;
-        vm.sampleData.knockouts = 39;
-        vm.sampleData.tokens = 12;
+        vm.counts = countData.data;
+
+        //vm.sampleData.today = countData.getRuns();
+        //vm.sampleData.hits = countData.getHomeruns();
+        //vm.sampleData.knockouts = countData.getStrikeouts();
+        //vm.sampleData.tokens = countData.getCoins();
 
         vm.$onInit = function() {
             console.log(vm.title);
