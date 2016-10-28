@@ -9,6 +9,7 @@ using Owin;
 using Mlb5.App_Start;
 using Mlb5.Migrations;
 using Mlb5.Security;
+using RazorEngine;
 
 [assembly: OwinStartup(typeof(Mlb5.Startup))]
 
@@ -31,7 +32,6 @@ namespace Mlb5
             WebApiConfig.Register(config);
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
-
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Mlb5Context, Configuration>());
         }

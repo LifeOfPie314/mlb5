@@ -31,14 +31,27 @@ namespace Mlb5.Tasks
             foreach (var gameNode in gameNodes)
             {
                 var apiGame = JsonConvert.DeserializeObject<MasterScoreboardApiGame>(gameNode.ToString());
-                apiGame.away_homeruns = Convert.ToInt32(gameNode["linescore"]["hr"]["away"].ToString());
-                apiGame.away_strikeouts = Convert.ToInt32(gameNode["linescore"]["so"]["away"].ToString());
-                apiGame.away_score = Convert.ToInt32(gameNode["linescore"]["r"]["away"].ToString());
+                try
+                {
+                    var linescore = gameNode["linescore"];
+                    var linescoreString = gameNode["linescore"].ToString();
+                    var hr = linescore["hr"].ToString();
+                    var away = linescore["hr"]["away"].ToString();
+
+                    apiGame.away_homeruns = Convert.ToInt32(linescore["hr"]["away"].ToString());
+                    apiGame.away_strikeouts = Convert.ToInt32(linescore["so"]["away"].ToString());
+                    apiGame.away_score = Convert.ToInt32(linescore["r"]["away"].ToString());
 
 
-                apiGame.home_homeruns = Convert.ToInt32(gameNode["linescore"]["hr"]["home"].ToString());
-                apiGame.home_strikeouts = Convert.ToInt32(gameNode["linescore"]["so"]["home"].ToString());
-                apiGame.home_score = Convert.ToInt32(gameNode["linescore"]["r"]["home"].ToString());
+                    apiGame.home_homeruns = Convert.ToInt32(linescore["hr"]["home"].ToString());
+                    apiGame.home_strikeouts = Convert.ToInt32(linescore["so"]["home"].ToString());
+                    apiGame.home_score = Convert.ToInt32(linescore["r"]["home"].ToString());
+                }
+                catch (Exception ex)
+                {
+                    apiGame.Canceled = true;
+                }
+
                 gamesList.Add(apiGame);
             }
 
@@ -61,8 +74,11 @@ namespace Mlb5.Tasks
             {
                 foreach (var scoreboardApiGame in masterScoreboardApiGames)
                 {
-                    var boxScoreXml = await httpClient.GetStringAsync(url + scoreboardApiGame.GetBoxScoreUrl());
-                    scoreboardApiGame.AddBoxScoreXml(boxScoreXml);
+                    if (!scoreboardApiGame.Canceled)
+                    {
+                        var boxScoreXml = await httpClient.GetStringAsync(url + scoreboardApiGame.GetBoxScoreUrl());
+                        scoreboardApiGame.AddBoxScoreXml(boxScoreXml);
+                    }
                 }
             }
 
@@ -110,6 +126,7 @@ namespace Mlb5.Tasks
         public int home_score { get; set; }
         public int home_homeruns { get; set; }
         public int home_strikeouts { get; set; }
+        public bool Canceled { get; set; }
 
         public string GetBoxScoreUrl()
         {
@@ -161,22 +178,31 @@ namespace Mlb5.Tasks
                 DateTimeKind.Utc);
 
             // Parse XML
-
-            XDocument doc = XDocument.Parse(_boxScoreXml);
-            var boxscoreNode = doc.Root;
-
-            var elapsedTime = boxscoreNode.Attribute("elapsed_time").Value.Substring(0, 4);
-            game.ElapsedTimeString = elapsedTime;
-            var elapsedTimeXml = elapsedTime.Split(':');
-            try
+            if (!String.IsNullOrEmpty(_boxScoreXml))
             {
-                game.ElapsedTime = new TimeSpan(0, Convert.ToInt32(elapsedTime[0]), Convert.ToInt32(elapsedTime[1]), 0);
-                game.EndTime = game.StartTime.Add(game.ElapsedTime);
+
+                XDocument doc = XDocument.Parse(_boxScoreXml);
+                var boxscoreNode = doc.Root;
+
+                var elapsedTime = boxscoreNode.Attribute("elapsed_time").Value.Substring(0, 4);
+                game.ElapsedTimeString = elapsedTime;
+                game.ElapsedTimeHours = Convert.ToInt32(elapsedTime[0]);
+                game.ElapsedTimeMinutes = Convert.ToInt32(elapsedTime[1]);
+                var elapsedTimeXml = elapsedTime.Split(':');
+                try
+                {
+                    //game.ElapsedTime = new TimeSpan(0, Convert.ToInt32(elapsedTime[0]), Convert.ToInt32(elapsedTime[1]), 0);
+                    game.EndTime = game.StartTime.Add(game.ElapsedTime);
+                }
+                catch (Exception ex)
+                {
+                    //game.ElapsedTime = new TimeSpan(0, 3, 0, 0);
+                    game.EndTime = game.StartTime.Add(game.ElapsedTime);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                game.ElapsedTime = new TimeSpan(0, 3, 0, 0);
-                game.EndTime = game.StartTime.Add(game.ElapsedTime);
+                game.EndTime = game.StartTime;
             }
             //Map to XML
             //game.Raw = _boxScoreXml;

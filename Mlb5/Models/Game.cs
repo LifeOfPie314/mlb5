@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Mlb5.Models
 {
@@ -30,6 +27,8 @@ namespace Mlb5.Models
         public GameTeam AwayTeam { get; set; }
         public GameTeam HomeTeam { get; set; }
         public string ElapsedTimeString { get; set; }
+        public int ElapsedTimeHours { get; set; }
+        public int ElapsedTimeMinutes { get; set; }
     }
 
     public class GameTeam
