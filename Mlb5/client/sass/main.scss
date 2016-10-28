@@ -4,5 +4,48 @@
     line-height: 1.6;
 }
 .main-login {
-	background-image: url("../app/images/login_backer.jpg");
+	background: url("../app/images/login_backer.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
+
+.main-login-logo { 
+	height: 300px;
+	width: 300px;
+	display: block;
+  	margin: 0 auto;
+  	margin-top: 100px;
+}
+
+#username {
+	color: white;
+	background: transparent;
+    border: none;
+    border-bottom: 2px solid lightgrey;
+    width: 80%;
+    margin: auto;
+  	text-align: center;
+}
+
+.submit-div {
+	height: 100px;
+}
+
+#submit {
+	height: 100px;
+	background:  #30bc75;
+}
+
+.pick-cards {
+	padding: 20px;
+}
+
+.inline-pick {
+	padding: 0px !important;
+}
+
+
+
+

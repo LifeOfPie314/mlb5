@@ -1,7 +1,28 @@
-﻿<div class="main-login">
-	<h1>Login To My App</h1>
-	<form name="vm.loginForm" novalidate vm.clientForm = {} ng-submit="vm.submit()">
-	    <input type="text" ng-model="vm.username" required placeholder="username"/>
-	    <input class="expand button" type="submit" value="Submit"/>
-	</form>
+﻿<div class="grid-frame vertical main-login">
+    <div class="grid-content collapse shrink header">
+        <!-- <ul class="primary condense menu-bar">
+            <li><a><strong>Angular Base Apps Starter</strong></a></li>
+            <li><a ui-sref="home.page1">Page 1</a></li>
+            <li><a ui-sref="home.page2">Page 2</a></li>
+        </ul> -->
+    </div>
+    <div class="grid-block" ui-view>
+    	<div class="main-login-logo"><img src="app/images/logo.png"></div>
+    </div>
+
+    <div class="grid-block" ui-view>
+     	<div class="small-12">
+	    	<form name="vm.loginForm" novalidate vm.clientForm = {} ng-submit="vm.submit()">
+		    	<input id="username" type="text" ng-model="vm.username" required placeholder="Username"/>
+		    	<br>
+		    	<div class="submit-div" style="position: absolute !important; bottom:0 !important; width: 100% !important;">
+		    		<input id="submit" style="margin-bottom: 0px !important; padding: 25px !important;" class="expand button" type="submit" value="Submit" ng-hide="!vm.username.length"/>
+		    	</div>
+			</form>
+		</div>
+    </div>
+
+    <div class="footer">
+        
+    </div>
 </div>
