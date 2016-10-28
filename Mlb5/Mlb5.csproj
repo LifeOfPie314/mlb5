@@ -233,6 +233,7 @@
     <Content Include="client\app\services\authFactory.js" />
     <Content Include="client\app\services\authIntercepterService.js" />
     <Content Include="client\gulpfile.js" />
+    <Content Include="client\images\login_backer.jpg" />
     <Content Include="client\index.html" />
     <Content Include="client\scripts\lodash.min.js" />
     <Content Include="newrelic\Extensions\CoreInstrumentation.xml" />
@@ -376,7 +377,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="client\images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610222013303_user.resx">
