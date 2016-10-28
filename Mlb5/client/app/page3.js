@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -23,14 +23,14 @@
         vm.awayIsActive = awayIsActive;
         vm.homeIsActive = homeIsActive;
         vm.dateSelected = dateSelected;
-        vm.makePick = makePick;
+        vm.pick = pick;
 
 
         vm.$onInit = function() {
             console.log(vm.title);
 
             $http.get('/datetime')
-                .then(function (response) {
+                .then(function(response) {
                     var datestring = response.data.date;
                     vm.selectedDate = moment(datestring.substring(0, 10), "YYYY-MM-DD");
 
@@ -68,25 +68,39 @@
             return false;
         }
 
-        function makePick(game, teamCode) {
-            var data =
-            {
-                id: game.id,
-                teamcode: teamCode
-            }
-            $http.get('api/picks/make/' + game.id + '/' + teamCode)
-                .then(function (response) {
-                    if (response.data != 0) {
-                        game.picked = true;
-                        game.pickedId = response.data;
-                        if (game.awayTeam.code == teamCode) {
-                            game.awayTeam.picked = true;
-                        } else {
-                            game.homeTeam.picked = true;
+        function pick(game, teamCode) {
+            if (game.status === 0) {
+                if (game.awayTeam.picked && game.awayTeam.code == teamCode) {
+                    $http.get('api/picks/remove/' + game.pickId)
+                        .then(function(response) {
+                            game.picked = false;
+                            game.awayTeam.picked = false;
+                            return;
+                        });
+                } else if (game.homeTeam.picked && game.homeTeam.code == teamCode) {
+                    $http.get('api/picks/remove/' + game.pickId)
+                        .then(function(response) {
+                            game.picked = false;
+                            game.homeTeam.picked = false;
+                            return;
+                        });
+                } else {
+                    $http.get('api/picks/make/' + game.id + '/' + teamCode)
+                    .then(function (response) {
+                        if (response.data != 0) {
+                            game.picked = true;
+                            game.pickId = response.data;
+                            if (game.awayTeam.code == teamCode) {
+                                game.awayTeam.picked = true;
+                                game.homeTeam.picked = false;
+                            } else {
+                                game.homeTeam.picked = true;
+                                game.awayTeam.picked = false;
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            }
         }
-
     }
 })();

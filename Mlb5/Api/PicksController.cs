@@ -106,8 +106,8 @@ namespace Mlb5.Api
             }
         }
 
-        [Route("remove")]
-        [HttpPost]
+        [Route("remove/{id}")]
+        [HttpGet]
         public async Task<IHttpActionResult> RemovePick(int id)
         {
             using (var db = new Mlb5Context())

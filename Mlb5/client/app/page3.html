@@ -4,7 +4,7 @@
 
 <div class="grid-block wrap" style="background: #404040; margin: 20px;" ng-repeat="game in vm.games | orderBy: ['-picked','startTime']">
     <div class="small-9" style="padding-right: 0px !important; background: #202020;">
-        <div class="small-12 grid-content" ng-class="{picked: game.awayTeam.picked}" ng-click="vm.makePick(game,game.awayTeam.code)">
+        <div class="small-12 grid-content" ng-class="{picked: game.awayTeam.picked}" ng-click="vm.pick(game,game.awayTeam.code)">
             <div class="grid-block {{game.awayTeam.code}}"style="padding-right: 35px;" >
                 <div class="small-3" style="padding-left: 0px !important;">
                     <div ng-if="vm.awayIsActive(game)">
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="small-12 grid-content {{game.homeTeam.code}}" ng-class="{picked: game.homeTeam.picked}"  ng-click="vm.makePick(game,game.homeTeam.code)">
+        <div class="small-12 grid-content {{game.homeTeam.code}}" ng-class="{picked: game.homeTeam.picked}"  ng-click="vm.pick(game,game.homeTeam.code)">
            <div class="grid-block {{game.homeTeam.code}}" style="padding-right: 35px;" >
                <div class="small-3">
                    <div ng-if="vm.homeIsActive(game)">
