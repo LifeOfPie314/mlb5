@@ -24,7 +24,7 @@
 
         vm.$onInit = function() {
             console.log(vm.title);
-            $state.go('home.page1');
+            $state.go('home.page3');
 
             // $http.get('/api/sample')
             //     .then(function(response) {

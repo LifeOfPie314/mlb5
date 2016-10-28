@@ -27,7 +27,7 @@ namespace Mlb5.Api
 
             using (var db = new Mlb5Context())
             {
-                dateTime = db.SimulationDateTimes.Single();
+                dateTime = db.SimulationDateTimes.First();
                 await MlbApi.ImportGamesIfNeeded(db, date);
                 games = db.Games.Where(x => x.Date == date).ToList();
                 picks = db.Picks.Where(x => x.Game.Date == date).ToList();
@@ -37,7 +37,7 @@ namespace Mlb5.Api
             foreach (var game in games)
             {
                 var gamePick = Mapper.Map<GamePick>(game);
-                //gamePick.SetTime();
+                gamePick.SetTime();
 
                 var pick = picks.SingleOrDefault(x => x.Game.Id == gamePick.Id);
                 if (pick != null)
@@ -98,9 +98,9 @@ namespace Mlb5.Api
                     };
                     db.Picks.Add(pick);
                     await db.SaveChangesAsync();
-                    return Ok(true);
+                    return Ok(pick.Id);
                 }
-                return Ok(false);
+                return Ok(0);
             }
         }
 

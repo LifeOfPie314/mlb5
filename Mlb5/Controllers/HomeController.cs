@@ -104,9 +104,15 @@ namespace Mlb5.Api
             SimulationDateTime simDateTime = new SimulationDateTime();
             using (var db = new Mlb5Context())
             {
-                simDateTime = db.SimulationDateTimes.SingleOrDefault();
+                simDateTime = db.SimulationDateTimes.FirstOrDefault();
+                if (simDateTime == null)
+                {
+                    simDateTime = new SimulationDateTime();
+                }
                 simDateTime.Date = date;
                 simDateTime.Hours = hours;
+
+                db.SimulationDateTimes.Add(simDateTime);
 
                 await db.SaveChangesAsync();
             }
