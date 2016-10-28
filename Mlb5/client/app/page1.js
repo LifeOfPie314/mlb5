@@ -19,14 +19,19 @@
         //vm.selectedDate = {}
 
         vm.setting1 = appConfig.setting1;
-        vm.loadPicks = loadPicks;
+
+        vm.awayIsActive = awayIsActive;
+        vm.homeIsActive = homeIsActive;
+        vm.dateSelected = dateSelected;
+        vm.datePickerOptions = {
+        
+        };
 
         
 
         vm.$onInit = function() {
             console.log(vm.title);
 
-<<<<<<< HEAD
             $http.get('/datetime')
                 .then(function (response) {
                     var datestring = response.data.date;
@@ -37,17 +42,25 @@
                 });
         }
 
+        function dateSelected() {
+            //var date = moment
+
+            loadPicks(vm.selectedDate);
+        }
+
         function loadPicks(date) {
             $http.get('api/picks/' + date.year() + '/' + date.format('MM') + '/' + date.format('DD'))
                 .then(function(response) {
                     vm.games = response.data;
                 });
-=======
-            // $http.get('/api/sample')
-            //     .then(function(response) {
-            //         vm.sampleData = response.data;
-            //     });
->>>>>>> e9729a49ba0762d3bd4581286165457ba831952b
+        }
+
+        function awayIsActive(game) {
+            return true;
+        }
+
+        function homeIsActive(game) {
+            return false;
         }
     }
 })();
