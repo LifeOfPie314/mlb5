@@ -1,21 +1,17 @@
 <div style="background: #2b2b2b; height: 100%; width: 100%;">
 <div style="text-align: center;">
-    <ul class="button-group segmented" style="background:white; border: white;">
+    <ul class="button-group segmented" style="border: white;" ng-init="toggle = 'activities'">
       <li>
-        <input type="radio" name="activity" value="activity" id="activity">
-        <label for="activity" style="color:#2b2b2b; border: white;">Activity</label>
+        <label ng-class="{activated: toggle == 'activities'}" style="color: white; border: 1px solid white; border-radius: 25px 0 0 25px; padding-left: 50px;" ng-click="toggle = 'activities'">Activities</label>
       </li>
       <li>
-        <input type="radio" name="leaders" value="leaders" id="leaders">
-        <label for="leaders" style="background: #494949; color:white; border: white 2px;">Leaders</label>
+      <label ng-class="{activated: toggle == 'leaders'}" style="color: white; border: 1px solid white;" ng-click="toggle = 'leaders'">Leaders</label>
       </li>
       <li>
-        <input type="radio" name="leagues" value="leagues" id="=leagues">
-        <label for="leagues" style="background: #494949; color:white; border: white 2px;">Leagues</label>
+        <label ng-class="{activated: toggle == 'leagues'}" style="color: white; border: 1px solid white; border-radius: 0 25px 25px 0; padding-right: 50px;" ng-click="toggle = 'leagues'">Leagues</label>
       </li>
     </ul>
 </div>
-
     <div class="grid-block wrap" style="margin: 20px;">
         <div class="small-12" style="padding: 5px;">
             <div class="grid-block wrap">
