@@ -9,6 +9,7 @@
         // base apps
         'base',
         'LocalStorageModule',
-        'angular-loading-bar'
+        'angular-loading-bar',
+        'mgcrea.ngStrap.datepicker'
     ]);
 })();

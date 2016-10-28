@@ -14,16 +14,30 @@
         /* jshint validthis:true */
         var vm = this;
         vm.title = 'page1';
+        vm.games = [];
+
+        //vm.selectedDate = {}
 
         vm.setting1 = appConfig.setting1;
-        vm.sampleData = [];
+        vm.loadPicks = loadPicks;
 
         vm.$onInit = function() {
             console.log(vm.title);
 
-            $http.get('/api/sample')
+            $http.get('/datetime')
+                .then(function (response) {
+                    var datestring = response.data.date;
+                    vm.selectedDate = moment(datestring.substring(0, 10), "YYYY-MM-DD");
+
+                    return loadPicks(vm.selectedDate);
+
+                });
+        }
+
+        function loadPicks(date) {
+            $http.get('api/picks/' + date.year() + '/' + date.format('MM') + '/' + date.format('DD'))
                 .then(function(response) {
-                    vm.sampleData = response.data;
+                    vm.games = response.data;
                 });
         }
     }

@@ -81,6 +81,7 @@ var vendorJsSrc = [
     "./node_modules/angular-strap/dist/angular-strap.min.js",
     "./node_modules/angular-strap/dist/angular-strap.tpl.min.js",
     "./node_modules/angular-loading-bar/build/loading-bar.min.js",
+    "./node_modules/moment/min/moment.min.js",
     "./node_modules/fastclick/lib/fastclick.js",
     "./node_modules/hammerjs/hammer.min.js",
     "./scripts/lodash.min.js"

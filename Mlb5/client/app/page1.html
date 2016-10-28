@@ -1,10 +1,13 @@
-﻿
-<div class="grid-block wrap" style="background: #404040; margin: 20px;">
+﻿<div class="grid-block wrap" style="background: #404040; margin: 20px;">
+    <input type="text" class="form-control" ng-model="vm.selectedDate" name="date" bs-datepicker>
+</div>
+
+<div class="grid-block wrap" style="background: #404040; margin: 20px;" ng-repeat="game in vm.games">
     <div class="small-9" style="padding-right: 0px !important; background: #202020;">
         <div class="small-12 grid-content" style="padding-right: 35px; background: blue;">
             <div class="grid-block">
                 <div class="small-3" style="padding-left: 0px !important;">
-                    <img src="images/cardinals_active.png">
+                    <img ng-src="images/{game.awayTeam.code}_active.png">
                 </div>
                 <div class="small-6" style="padding-left: 20px; margin: auto; color:white; font-size: 12px">
                     Mets
@@ -17,7 +20,7 @@
         <div class="small-12 grid-content" style="padding-right: 35px;">
            <div class="grid-block">
                 <div class="small-3">
-                    <img src="images/cubs_inactive.png">
+                    <img ng-src="images/{game.homeTeam.code}_active.png">
                 </div>
                 <div class="small-6" style="padding-left: 20px; margin: auto; color:white; font-size: 12px">
                     Diamondbacks
