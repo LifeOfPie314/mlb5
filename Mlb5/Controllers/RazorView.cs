@@ -22,7 +22,6 @@ namespace Mlb5.Api
             response.Content = new StringContent(html);
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
             return response;
-
         }
 
         public static HttpResponseMessage GetResponseWithModel<T>(string templateName, string templateLocation, T model)
@@ -42,5 +41,14 @@ namespace Mlb5.Api
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
             return response;
         }
+
+        //public static void CompileTemplate(string templateName, string templateLocation)
+        //{
+        //    var templatePath = System.Web.HttpContext.Current.Request.MapPath(templateLocation);
+
+        //    var razorTemplate = File.ReadAllText(templatePath);
+
+        //    Engine.Razor.Compile();
+        //}
     }
 }
