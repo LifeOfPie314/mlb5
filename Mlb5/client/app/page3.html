@@ -5,7 +5,7 @@
 <div class="grid-block wrap" style="background: #404040; margin: 20px;" ng-repeat="game in vm.games | orderBy: ['-picked','startTime']">
     <div class="small-9" style="padding-right: 0px !important; background: #202020;">
         <div class="small-12 grid-content" ng-class="{picked: game.awayTeam.picked}" ng-click="vm.makePick(game,game.awayTeam.code)">
-            <div class="grid-block {{game.awayTeam.code}}"style="padding-right: 35px;" >
+            <div class="grid-block {{game.awayTeam.code}}" style="padding-right: 35px;" >
                 <div class="small-3" style="padding-left: 0px !important;">
                     <div ng-if="vm.awayIsActive(game)">
                         <img ng-src="images/active/{{game.awayTeam.code}}_ACTIVE_logo.png">
@@ -42,7 +42,7 @@
         </div>
         
     </div>
-    <div ba-open="player-info" class="small-3 grid-content" style="padding-left: 0px !important; margin: auto;  color:white; text-align: center; height: 70px;"><p style="font-size: 12px; padding-top: 25px; padding-left: 8px;">{{game.startTime | date:'h:mma'}} CT</p></div>
+    
 </div>
 
 <div class="grid-block wrap" style="background: #404040; margin: 20px;">
