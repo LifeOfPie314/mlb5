@@ -74,12 +74,25 @@ namespace Mlb5.Api
         private Counts GetUpdatedCounts(int userId, Mlb5Context db)
         {
             //var user = db.Users.Single(x => x.Id == userId);
-            var runs = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Sum(x => x.Runs);
-            var homeruns = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Sum(x => x.Homeruns);
-            var strikeouts = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Sum(x => x.Strikeouts);
-            //var runs = 24;
-            //var homeruns = 14;
-            //var strikeouts = 36;
+            var runRecords = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Select(x => x.Runs).ToList();
+            var homerunRecords = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Select(x => x.Homeruns).ToList();
+            var strikeoutRecordss = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Select(x => x.Strikeouts).ToList();
+            var runs = 0;
+            var homeruns = 0;
+            var strikeouts = 0;
+
+            if (runRecords.Any())
+            {
+                runs = runRecords.Sum(x => x);
+            }
+            if (homerunRecords.Any())
+            {
+                homeruns = homerunRecords.Sum(x => x);
+            }
+            if (strikeoutRecordss.Any())
+            {
+                strikeouts = strikeoutRecordss.Sum(x => x);
+            }
 
             return new Counts()
             {

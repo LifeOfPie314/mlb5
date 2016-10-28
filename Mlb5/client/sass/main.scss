@@ -71,6 +71,20 @@
     background-color :white !important;
     color: black !important;
 }
+.datepicker {
+    background: #2b2b2b;
+    color: #fff;
+    margin: 0 auto;
+
+    table {
+        button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+    background: #1d1d1d;
+}
+    }
+
+}
 
 .picked{
 .ana { 
