@@ -11,5 +11,10 @@ namespace Mlb5.Models
         public DateTime Date { get; set; }
         public int Hours { get; set; }
         public int Minutes { get; set; }
+
+        public DateTime GetCurrentTime()
+        {
+            return Date.AddHours(Hours).AddMinutes(Minutes);
+        }
     }
 }

@@ -33,11 +33,13 @@ namespace Mlb5.Api
                 picks = db.Picks.Where(x => x.Game.Date == date).ToList();
             }
 
+            var currentTime = dateTime.GetCurrentTime();
+
             var gamePicks = new List<GamePick>();
             foreach (var game in games)
             {
                 var gamePick = Mapper.Map<GamePick>(game);
-                gamePick.SetTime();
+                gamePick.SetStatus(currentTime);
 
                 var pick = picks.SingleOrDefault(x => x.Game.Id == gamePick.Id);
                 if (pick != null)
@@ -73,8 +75,8 @@ namespace Mlb5.Api
             return Ok(response);
         }
 
-        [Route("make")]
-        [HttpPost]
+        [Route("make/{id}/{teamcode}")]
+        [HttpGet]
         public async Task<IHttpActionResult> MakePick(int id, string teamcode)
         {
             var identity = User.Identity as ClaimsIdentity;

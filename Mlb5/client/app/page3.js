@@ -55,10 +55,16 @@
         }
 
         function awayIsActive(game) {
-            return true;
+            if (game.status === 0 && !game.homeTeam.picked) {
+                return true;
+            }
+            return false;
         }
 
         function homeIsActive(game) {
+            if (game.status === 0 && !game.awayTeam.picked) {
+                return true;
+            }
             return false;
         }
 
@@ -66,9 +72,9 @@
             var data =
             {
                 id: game.id,
-                teamCode: teamCode
+                teamcode: teamCode
             }
-            $http.post('api/picks/make', data)
+            $http.get('api/picks/make/' + game.id + '/' + teamCode)
                 .then(function (response) {
                     if (response.data != 0) {
                         game.picked = true;

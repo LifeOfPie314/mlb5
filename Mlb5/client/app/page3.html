@@ -2,10 +2,10 @@
     <input type="text" class="selectdate" ng-model="vm.selectedDate" name="date" data-date-format="EEE, MMMM d, yyyy" ng-change="vm.dateSelected()" bs-datepicker>
 </div>
 
-<div class="grid-block wrap" style="background: #404040; margin: 20px;" ng-repeat="game in vm.games">
+<div class="grid-block wrap" style="background: #404040; margin: 20px;" ng-repeat="game in vm.games | orderBy: ['-picked','startTime']">
     <div class="small-9" style="padding-right: 0px !important; background: #202020;">
-        <div class="small-12 grid-content" style="padding-right: 35px;" ng-class="{nyn: nyn==1}" ng-click="active=1">
-            <div class="grid-block">
+        <div class="small-12 grid-content" ng-class="{picked: game.awayTeam.picked}" ng-click="vm.makePick(game,game.awayTeam.code)">
+            <div class="grid-block {{game.awayTeam.code}}"style="padding-right: 35px;" >
                 <div class="small-3" style="padding-left: 0px !important;">
                     <div ng-if="vm.awayIsActive(game)">
                         <img ng-src="images/active/{{game.awayTeam.code}}_ACTIVE_logo.png">
@@ -14,16 +14,16 @@
                         <img ng-src="images/inactive/{{game.awayTeam.code}}_inactive_logo.png">
                     </div>
                 </div>
-                <div class="small-6" style="padding-left: 20px; margin: auto; color:white; font-size: 12px">
+                <div class="small-6" style="padding-left: 20px; margin: auto; color:white; font-size: 16px">
                     {{game.awayTeam.name}}
                 </div>
-                <div class="small-3" style="text-align: right; margin: auto; color:white; font-size: 10px;">
+                <div class="small-3" style="text-align: right; margin: auto; color:white; font-size: 14px;">
                     {{game.awayTeam.record}}
                 </div>
             </div>
         </div>
-        <div class="small-12 grid-content" style="padding-right: 35px;" ng-class="{ari: ari==1}" ng-click="ari=1">
-           <div class="grid-block">
+        <div class="small-12 grid-content {{game.homeTeam.code}}" ng-class="{picked: game.homeTeam.picked}"  ng-click="vm.makePick(game,game.homeTeam.code)">
+           <div class="grid-block {{game.homeTeam.code}}" style="padding-right: 35px;" >
                <div class="small-3">
                    <div ng-if="vm.homeIsActive(game)">
                        <img ng-src="images/active/{{game.homeTeam.code}}_ACTIVE_logo.png">
@@ -32,17 +32,17 @@
                        <img ng-src="images/inactive/{{game.homeTeam.code}}_inactive_logo.png">
                    </div>
                </div>
-                <div class="small-6" style="padding-left: 20px; margin: auto; color:white; font-size: 12px">
+                <div class="small-6" style="padding-left: 20px; margin: auto; color:white; font-size: 16px">
                     {{game.homeTeam.name}}
                 </div>
-                <div class="small-3" style="text-align: right; margin: auto; color:white; font-size: 10px;">
+                <div class="small-3" style="text-align: right; margin: auto; color:white; font-size: 14px;">
                     {{game.homeTeam.record}}
                 </div>
             </div>
         </div>
         
     </div>
-    <div ba-open="player-info" class="small-3 grid-content" style="padding-left: 0px !important; margin: auto;  color:white; text-align: center; height: 70px;"><p style="font-size: 12px; padding-top: 25px; padding-left: 8px;">3:05PM CT</p></div>
+    <div ba-open="player-info" class="small-3 grid-content" style="padding-left: 0px !important; margin: auto;  color:white; text-align: center; height: 70px;"><p style="font-size: 12px; padding-top: 25px; padding-left: 8px;">{{game.startTime | date:'h:mma'}} CT</p></div>
 </div>
 
 <div class="grid-block wrap" style="background: #404040; margin: 20px;">
