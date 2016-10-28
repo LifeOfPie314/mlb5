@@ -1,4 +1,22 @@
-﻿<div style="background: #2b2b2b; height: 100%; width: 100%;">
+﻿<div style="text-align: center;">
+    <ul class="button-group segmented" style="background:white; border: white;">
+      <li>
+        <input type="radio" name="activity" value="fork" id="activity">
+        <label for="activity" style="color:#2b2b2b; border: white;">Activity</label>
+      </li>
+      <li>
+        <input type="radio" name="leaders" value="spork" id="leaders">
+        <label for="leaders" style="background: #494949; color:white; border: white 2px;">Leaders</label>
+      </li>
+      <li>
+        <input type="radio" name="leagues" value="spoon" id="=leagues">
+        <label for="leagues" style="background: #494949; color:white; border: white 2px;">Leagues</label>
+      </li>
+    </ul>
+</div>
+
+
+<div style="background: #2b2b2b; height: 100%; width: 100%;" ng-show="toggle-cards">
     <p style="color: white; text-align: center; font-size: 12px;"><strong>4</strong> <i>of</i> <strong>15</strong> COLLECTED</p>
     <div class="grid-block wrap" style="margin: 20px;">
         <div class="small-6" style="padding: 5px;">
