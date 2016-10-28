@@ -11,7 +11,7 @@
     </div>
     <div class="grid-block shrink footer" ng-init="show=3">
         <!-- <a ui-sref="logout">Log Out</a> -->
-        <ul class="menu-bar" style="background: #404040; height: 70px;">
+        <ul class="menu-bar" style="background: transparent; height: 70px;">
             <li ng-hide="show==1"><a ba-open="animatedModal" ng-click="show=1"><img src="images/footer_account_inactive_icon.png"></a></li>
             <li ng-show="show==1"><a ba-open="animatedModal" ><img src="images/footer_account_ACTIVE_icon.png"></a></li>
             <li ng-hide="show==2"><a ui-sref="home.page2"  ng-click="show = 2"><img src="images/footer_trophy_inactive_icon.png"></a></li>
@@ -25,7 +25,6 @@
         </ul>
     </div>
 </div>
-
 <div ba-modal="" id="animatedModal" animation-in="slideInUp" animation-out="hingeOutFromMiddleY" style="background: #404040;">
   <a ba-close="" class="close-button">×</a>
   <p style="color:white; text-align: center; padding-top: 300px;">Would you like to logout?</p>
