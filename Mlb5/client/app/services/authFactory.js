@@ -57,7 +57,7 @@
 
             authentication.isAuth = false;
             authentication.username = "";
-        };
+        }
 
         function fillAuthData() {
 

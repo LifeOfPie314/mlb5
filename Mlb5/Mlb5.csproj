@@ -177,6 +177,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Api\rawboxscore.xml" />
     <Content Include="client\app\app.module.js" />
     <Content Include="client\app\app.config.js" />
     <Content Include="client\app\app.routes.js" />
@@ -197,6 +198,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\PicksController.cs" />
     <Compile Include="Api\SampleController.cs" />
     <Compile Include="Api\UsersController.cs" />
     <Compile Include="App_Start\AutofacConfig.cs" />
@@ -212,10 +214,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mlb5Context.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\SimpleAuthorizationServiceProvider.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Tasks\MlbApi.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +231,8 @@
     <Content Include="client\sass\main.scss" />
     <Content Include="client\build\**\*" />
     <Content Include="Views\Home\Viewer.cshtml" />
+    <Content Include="Api\master_scoreboard.json" />
+    <Content Include="Api\boxscore.json" />
     <None Include="Properties\PublishProfiles\Mlb5 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -238,7 +244,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="client\images\" />
-    <Folder Include="Tasks\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610222013303_user.resx">
