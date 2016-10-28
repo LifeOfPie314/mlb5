@@ -1,10 +1,10 @@
 ﻿<div class="grid-block wrap" style="text-align: center;">
-    <ul class="button-group segmented" style="border: #2b2b2b; padding-left: 30px;">
+    <ul class="button-group segmented" style="border: #2b2b2b; padding-left: 33px;" ng-init="toggle = 'trophy'">
       <li>
-        <label style="background: #2b2b2b; color:white; border: white; border: 1px solid; border-right: 0px; border-radius: 25px 0 0 25px; padding-left: 90px;" ng-click="toggle = 'trophy'">Trophies</label>
+        <label ng-class="{activated: toggle == 'trophy'}" style="color: white; border: 1px solid white; border-right: 0px; border-radius: 25px 0 0 25px; padding-left: 90px;" ng-click="toggle = 'trophy'">Trophies</label>
       </li>
       <li>
-        <label style="background: #2b2b2b; color:white; border: white; border: 1px solid; border-radius: 0 25px 25px 0; padding-right: 90px;" ng-click="toggle = 'card'">Cards</label>
+        <label ng-class="{activated: toggle == 'card'}" style="color: white; border: 1px solid white; border-radius: 0 25px 25px 0; padding-right: 90px;" ng-click="toggle = 'card'">Cards</label>
       </li>
     </ul>
 </div>
@@ -53,22 +53,10 @@
             <img src="images/trophies/active/TROPHY_10dingers_active.jpg">
         </div>
         <div class="small-6" style="padding: 5px;" >
-            <img src="images/trophies/inactive/TROPHY_10dingers_inactive.jpg">
-        </div>
-        <div class="small-6" style="padding: 5px;">
-            <img src="images/trophies/active/TROPHY_30k_active.jpg">
+            <img src="images/trophies/inactive/TROPHY_alc_inactive.jpg">
         </div>
         <div class="small-6" style="padding: 5px;" >
             <img src="images/trophies/inactive/TROPHY_30k_inactive.jpg">
-        </div>
-        <div class="small-6" style="padding: 5px;">
-            <img src="images/trophies/active/TROPHY_alc_active.jpg">
-        </div>
-        <div class="small-6" style="padding: 5px;" >
-            <img src="images/trophies/inactive/TROPHY_alc_inactive.jpg">
-        </div>
-        <div class="small-6" style="padding: 5px;">
-            <img src="images/trophies/active/TROPHY_alw_active.jpg">
         </div>
         <div class="small-6" style="padding: 5px;" >
             <img src="images/trophies/inactive/TROPHY_alw_inactive.jpg">
@@ -77,31 +65,17 @@
             <img src="images/trophies/active/TROPHY_daily_wins_active.jpg">
         </div>
         <div class="small-6" style="padding: 5px;" >
-            <img src="images/trophies/inactive/TROPHY_daily_wins_inactive.jpg">
-        </div>
-        <div class="small-6" style="padding: 5px;">
-            <img src="images/trophies/active/TROPHY_nlc_active.jpg">
-        </div>
-        <div class="small-6" style="padding: 5px;" >
             <img src="images/trophies/inactive/TROPHY_nlc_inactive.jpg">
         </div>
-        <div class="small-6" style="padding: 5px;">
-            <img src="images/trophies/active/TROPHY_nle_active.jpg">
-        </div>
+        
         <div class="small-6" style="padding: 5px;" >
             <img src="images/trophies/inactive/TROPHY_nle_inactive.jpg">
-        </div>
-        <div class="small-6" style="padding: 5px;">
-            <img src="images/trophies/active/TROPHY_nlw_active.jpg">
         </div>
         <div class="small-6" style="padding: 5px;" >
             <img src="images/trophies/inactive/TROPHY_nlw_inactive.jpg">
         </div>
         <div class="small-6" style="padding: 5px;">
             <img src="images/trophies/active/TROPHY_no_hitter_active.jpg">
-        </div>
-        <div class="small-6" style="padding: 5px;" >
-            <img src="images/trophies/inactive/TROPHY_no_hitter_inactive.jpg">
         </div>
     </div>
 </div>
