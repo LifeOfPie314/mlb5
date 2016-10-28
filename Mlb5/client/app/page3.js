@@ -52,7 +52,7 @@
                 .then(function(response) {
                     vm.games = response.data.picks;
 
-                    countData.updateCounts(response.data.counts);
+                    countData.update(response.data.counts);
 
                     //countData.setCoins(response.data.counts.coins);
                     //countData.setRuns(response.data.counts.runs);

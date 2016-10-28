@@ -25,7 +25,8 @@ namespace Mlb5
             _container = AutofacConfig.Start();
 
             ConfigureOAuth(app);
-
+            GlobalConfiguration.Configuration.IncludeErrorDetailPolicy
+= IncludeErrorDetailPolicy.Always;
 
             JsonConfig.Register(config);
 

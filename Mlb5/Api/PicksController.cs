@@ -73,18 +73,20 @@ namespace Mlb5.Api
 
         private Counts GetUpdatedCounts(int userId, Mlb5Context db)
         {
-            var user = db.Users.Single(x => x.Id == userId);
+            //var user = db.Users.Single(x => x.Id == userId);
             var runs = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Sum(x => x.Runs);
             var homeruns = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Sum(x => x.Homeruns);
             var strikeouts = db.Picks.Where(x => x.UserId == userId && x.Status != PickStatus.New).Sum(x => x.Strikeouts);
-
+            //var runs = 24;
+            //var homeruns = 14;
+            //var strikeouts = 36;
 
             return new Counts()
             {
                 Runs = runs,
                 Homeruns = homeruns,
                 Strikeouts = strikeouts,
-                Coins = user.Coins
+                Coins = 0
             };
         }
 
