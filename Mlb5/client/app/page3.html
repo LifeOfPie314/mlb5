@@ -4,8 +4,8 @@
 
 <div class="grid-block wrap" style="background: #404040; margin: 20px;" ng-repeat="game in vm.games | orderBy: ['-picked','startTime']">
     <div class="small-9" style="padding-right: 0px !important; background: #202020;">
-        <div class="small-12 grid-content" ng-class="{picked: game.awayTeam.picked}" ng-click="vm.makePick(game,game.awayTeam.code)">
-            <div class="grid-block {{game.awayTeam.code}}" style="padding-right: 35px;" >
+        <div class="small-12 grid-content" ng-class="{picked: game.awayTeam.picked}" ng-click="vm.pick(game,game.awayTeam.code)">
+            <div class="grid-block {{game.awayTeam.code}}"style="padding-right: 35px;" >
                 <div class="small-3" style="padding-left: 0px !important;">
                     <div ng-if="vm.awayIsActive(game)">
                         <img ng-src="images/active/{{game.awayTeam.code}}_ACTIVE_logo.png">
@@ -22,16 +22,16 @@
                 </div>
             </div>
         </div>
-        <div class="small-12 grid-content {{game.homeTeam.code}}" ng-class="{picked: game.homeTeam.picked}"  ng-click="vm.makePick(game,game.homeTeam.code)">
-           <div class="grid-block {{game.homeTeam.code}}" style="padding-right: 35px;" >
-               <div class="small-3">
-                   <div ng-if="vm.homeIsActive(game)">
-                       <img ng-src="images/active/{{game.homeTeam.code}}_ACTIVE_logo.png">
-                   </div>
-                   <div ng-if="!vm.homeIsActive(game)">
-                       <img ng-src="images/inactive/{{game.homeTeam.code}}_inactive_logo.png">
-                   </div>
-               </div>
+        <div class="small-12 grid-content {{game.homeTeam.code}}" ng-class="{picked: game.homeTeam.picked}"  ng-click="vm.pick(game,game.homeTeam.code)">
+            <div class="grid-block {{game.homeTeam.code}}" style="padding-right: 35px;" >
+                <div class="small-3">
+                    <div ng-if="vm.homeIsActive(game)">
+                        <img ng-src="images/active/{{game.homeTeam.code}}_ACTIVE_logo.png">
+                    </div>
+                    <div ng-if="!vm.homeIsActive(game)">
+                        <img ng-src="images/inactive/{{game.homeTeam.code}}_inactive_logo.png">
+                    </div>
+                </div>
                 <div class="small-6" style="padding-left: 20px; margin: auto; color:white; font-size: 16px">
                     {{game.homeTeam.name}}
                 </div>
@@ -42,7 +42,29 @@
         </div>
         
     </div>
-    
+    <div ng-switch="game.status">
+        <div ng-switch-when="0">
+            <div ba-open="player-info" class="small-3 grid-content" style="padding-left: 0px !important; margin: auto;  color:white; text-align: center; height: 70px;"><p style="font-size: 12px; padding-top: 25px; padding-left: 8px;">{{game.startTime | date:'h:mma'}} CT</p></div>
+        </div>
+        <div ng-switch-when="1">
+            <div ba-open="player-info" class="small-3 grid-content">
+                <span style="color:white; position: absolute; right:25px; top: 4px; font-size: 12px;">In Prog</span>
+                <br>
+                <img src="images/in_game_icons.png">
+                <span style="color:white; position: absolute; right:58px; top: 50px; font-size: 12px;">2</span>
+                <span style="color:white; position: absolute; right:23px; top: 50px; font-size: 12px;">8</span>
+            </div>
+        </div>
+        <div ng-switch-default>
+            <div ba-open="player-info" class="small-3 grid-content">
+                <span style="color:white; position: absolute; right:25px; top: 4px; font-size: 12px;">Final</span>
+                <br>
+                <img src="images/in_game_icons.png">
+                <span style="color:white; position: absolute; right:58px; top: 50px; font-size: 12px;">2</span>
+                <span style="color:white; position: absolute; right:23px; top: 50px; font-size: 12px;">8</span>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="grid-block wrap" style="background: #404040; margin: 20px;">
@@ -185,4 +207,3 @@
         </div>
     </div>
 </div>
-
