@@ -31,7 +31,7 @@ namespace Mlb5.Models
         public int ElapsedTimeMinutes { get; set; }
         public bool Picked { get; set; }
         public int PickId { get; set; }
-        public DateTime LocalTime { get; set; }
+        public GameStatus Status { get; set; }
 
         public void MarkPicked(Pick pick)
         {
@@ -47,10 +47,28 @@ namespace Mlb5.Models
             }
         }
 
-        public void SetTime()
+        public void SetStatus(DateTime currentDateTime)
         {
-            LocalTime = StartTime.AddHours(-6);
+            if (StartTime < currentDateTime)
+            {
+                if (EndTime < currentDateTime)
+                {
+                    Status = GameStatus.Completed;
+                }
+                else
+                {
+                    Status = GameStatus.Progress;
+                }
+            }
+            
         }
+    }
+
+    public enum GameStatus
+    {
+        New,
+        Progress,
+        Completed
     }
 
     public class GamePickTeam

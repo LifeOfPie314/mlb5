@@ -108,11 +108,17 @@ namespace Mlb5.Api
                 if (simDateTime == null)
                 {
                     simDateTime = new SimulationDateTime();
-                }
-                simDateTime.Date = date;
-                simDateTime.Hours = hours;
 
-                db.SimulationDateTimes.Add(simDateTime);
+                    simDateTime.Date = date;
+                    simDateTime.Hours = hours;
+
+                    db.SimulationDateTimes.Add(simDateTime);
+                }
+                else
+                {
+                    simDateTime.Date = date;
+                    simDateTime.Hours = hours;
+                }
 
                 await db.SaveChangesAsync();
             }
