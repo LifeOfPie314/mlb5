@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
+using AutoMapper;
 using Mlb5.Models;
 using Mlb5.Tasks;
 
@@ -21,15 +22,31 @@ namespace Mlb5.Api
             var date = new DateTime(year, month, day);
 
             var games = new List<Game>();
+            var picks = new List<Pick>();
+            SimulationDateTime dateTime;
 
             using (var db = new Mlb5Context())
             {
+                dateTime = db.SimulationDateTimes.First();
                 await MlbApi.ImportGamesIfNeeded(db, date);
                 games = db.Games.Where(x => x.Date == date).ToList();
+                picks = db.Picks.Where(x => x.Game.Date == date).ToList();
             }
 
+            var gamePicks = new List<GamePick>();
+            foreach (var game in games)
+            {
+                var gamePick = Mapper.Map<GamePick>(game);
+                gamePick.SetTime();
 
-            return Ok(games);
+                var pick = picks.SingleOrDefault(x => x.Game.Id == gamePick.Id);
+                if (pick != null)
+                {
+                    gamePick.MarkPicked(pick);
+                }
+                gamePicks.Add(gamePick);
+            }
+            return Ok(gamePicks);
         }
 
         [Route("{year}/{month}/{day}/xml")]
@@ -81,9 +98,9 @@ namespace Mlb5.Api
                     };
                     db.Picks.Add(pick);
                     await db.SaveChangesAsync();
-                    return Ok(true);
+                    return Ok(pick.Id);
                 }
-                return Ok(false);
+                return Ok(0);
             }
         }
 

@@ -14,8 +14,8 @@ namespace Mlb5.App_Start
             var builder = new ContainerBuilder();
 
             // Automapper Registration
-            builder.Register(ctx => AutoMapperConfig.Get()).As<MapperConfiguration>();
-            builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>();
+            //builder.Register(ctx => AutoMapperConfig.Get()).As<MapperConfiguration>();
+            //builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>();
 
             //builder.RegisterControllers(Assembly.GetExecutingAssembly());
             //builder.RegisterFilterProvider();

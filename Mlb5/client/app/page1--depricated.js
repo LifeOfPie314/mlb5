@@ -1,19 +1,19 @@
-(function() {
+﻿(function() {
     'use strict';
 
     angular
         .module('app')
-        .component('page3',
+        .component('page1',
         {
-            templateUrl: 'page3.html',
-            controller: page3,
+            templateUrl: 'page1.html',
+            controller: page1,
             controllerAs: 'vm'
         });
 
-    function page3(appConfig, $http) {
+    function page1(appConfig, $http) {
         /* jshint validthis:true */
         var vm = this;
-        vm.title = 'page3';
+        vm.title = 'page1';
         vm.games = [];
 
         //vm.selectedDate = {}
@@ -24,7 +24,6 @@
         vm.homeIsActive = homeIsActive;
         vm.dateSelected = dateSelected;
         vm.makePick = makePick;
-
 
         vm.$onInit = function() {
             console.log(vm.title);
@@ -69,7 +68,7 @@
                 teamCode: teamCode
             }
             $http.post('api/picks/make', data)
-                .then(function (response) {
+                .then(function(response) {
                     if (response.data != 0) {
                         game.picked = true;
                         game.pickedId = response.data;
@@ -81,6 +80,5 @@
                     }
                 });
         }
-
     }
 })();
