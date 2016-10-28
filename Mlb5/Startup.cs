@@ -33,6 +33,8 @@ namespace Mlb5
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
 
+            AutoMapperConfig.Setup();
+
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Mlb5Context, Configuration>());
         }
 

@@ -251,6 +251,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mlb5Context.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GamePick.cs" />
     <Compile Include="Models\Pick.cs" />
     <Compile Include="Models\SimulationDateTime.cs" />
     <Compile Include="Models\User.cs" />

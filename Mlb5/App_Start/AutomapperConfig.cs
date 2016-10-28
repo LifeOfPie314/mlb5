@@ -1,14 +1,16 @@
 ﻿using AutoMapper;
+using Mlb5.Models;
 
 namespace Mlb5.App_Start
 {
     public static class AutoMapperConfig
     {
-        public static MapperConfiguration Get()
+        public static void Setup()
         {
-            return new MapperConfiguration(cfg =>
+            Mapper.Initialize(cfg =>
             {
-
+                cfg.CreateMap<Game, GamePick>();
+                cfg.CreateMap<GameTeam, GamePickTeam>();
             });
         }
     }

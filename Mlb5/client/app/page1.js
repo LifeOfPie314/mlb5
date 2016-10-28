@@ -23,6 +23,7 @@
         vm.awayIsActive = awayIsActive;
         vm.homeIsActive = homeIsActive;
         vm.dateSelected = dateSelected;
+        vm.makePick = makePick;
 
         vm.$onInit = function() {
             console.log(vm.title);
@@ -51,6 +52,8 @@
                     vm.games = response.data;
                 });
         }
+
+        function
 
         function awayIsActive(game) {
             return true;
