@@ -222,6 +222,12 @@
     <Content Include="client\app\page1.js" />
     <Content Include="client\app\home.html" />
     <Content Include="client\app\home.js" />
+    <Content Include="client\app\page3.html" />
+    <Content Include="client\app\page3.js" />
+    <Content Include="client\app\page4.html" />
+    <Content Include="client\app\page4.js" />
+    <Content Include="client\app\page5.html" />
+    <Content Include="client\app\page5.js" />
     <Content Include="client\app\services\authFactory.js" />
     <Content Include="client\app\services\authIntercepterService.js" />
     <Content Include="client\gulpfile.js" />

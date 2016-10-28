@@ -23,6 +23,8 @@
         vm.awayIsActive = awayIsActive;
         vm.homeIsActive = homeIsActive;
         vm.dateSelected = dateSelected;
+        vm.makePick = makePick;
+
 
         vm.$onInit = function() {
             console.log(vm.title);
@@ -59,5 +61,26 @@
         function homeIsActive(game) {
             return false;
         }
+
+        function makePick(game, teamCode) {
+            var data =
+            {
+                id: game.id,
+                teamCode: teamCode
+            }
+            $http.post('api/picks/make', data)
+                .then(function (response) {
+                    if (response.data != 0) {
+                        game.picked = true;
+                        game.pickedId = response.data;
+                        if (game.awayTeam.code == teamCode) {
+                            game.awayTeam.picked = true;
+                        } else {
+                            game.homeTeam.picked = true;
+                        }
+                    }
+                });
+        }
+
     }
 })();
