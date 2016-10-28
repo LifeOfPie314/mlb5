@@ -285,6 +285,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="client\images\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610222013303_user.resx">

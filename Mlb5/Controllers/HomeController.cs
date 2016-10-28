@@ -81,7 +81,7 @@ namespace Mlb5.Api
 
         [HttpGet]
         [Route("datetime")]
-        public HttpResponseMessage Datetime()
+        public IHttpActionResult Datetime()
         {
             using (var db = new Mlb5Context())
             {
@@ -92,16 +92,14 @@ namespace Mlb5.Api
                     db.SimulationDateTimes.Add(simDateTime);
                 }
 
-                var response = RazorView.GetResponseWithModel("datetime", "~/Views/Home/Datetime.cshtml", simDateTime);
-                return response;
-
+                return Ok(simDateTime);
             }
 
         }
 
         [HttpGet]
         [Route("setdatetime")]
-        public async Task<IHttpActionResult> SetDatetime(DateTime date, int hours, int minutes)
+        public async Task<IHttpActionResult> SetDatetime(DateTime date, int hours)
         {
             SimulationDateTime simDateTime = new SimulationDateTime();
             using (var db = new Mlb5Context())
@@ -109,35 +107,11 @@ namespace Mlb5.Api
                 simDateTime = db.SimulationDateTimes.SingleOrDefault();
                 simDateTime.Date = date;
                 simDateTime.Hours = hours;
-                simDateTime.Minutes = minutes;
 
                 await db.SaveChangesAsync();
             }
 
             return Ok(simDateTime);
-
-
         }
     }
 }
-
-
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.Mvc;
-//using Mlb5.ViewModels;
-
-//namespace Mlb5.Controllers
-//{
-//    public class HomeController : Controller
-//    {
-//        // GET: Home
-//        public ActionResult Index()
-//        {
-//            
-//            return View(model);
-//        }
-//    }
-//}

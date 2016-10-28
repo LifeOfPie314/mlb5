@@ -101,8 +101,13 @@ namespace Mlb5.Tasks
 
                 var games = await mlbApi.GetGameFiles(date);
 
-                db.Games.AddRange(games);
-
+                foreach (var game in games)
+                {
+                    if (db.Games.SingleOrDefault(x => x.Id == game.Id) == null)
+                    {
+                        db.Games.Add(game);
+                    }
+                }
                 return await db.SaveChangesAsync();
             }
             return 0;
