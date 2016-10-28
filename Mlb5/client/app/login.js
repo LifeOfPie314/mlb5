@@ -35,7 +35,7 @@
 
             return authFactory.login(loginData)
                    .then(function (response) {
-                           $state.go('home.page1');
+                           $state.go('home.page3');
                    },
             function (err) {
                 console.log(err);
